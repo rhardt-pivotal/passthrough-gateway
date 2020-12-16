@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: simple-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: dummy
+          host: https://k8s-service.example
+          uri: https://downstream-service.example
+          predicates:
+            - Path=/**
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+logging.level.org.springframework.cloud.kubernetes: TRACE

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: simple-gateway
+data:
+  application.yaml: |-
+    test:
+      value: koorookoo
+    spring:
+      cloud:
+        gateway:
+          routes:
+            - id: scg-passthrough
+              host: http://scg.internal.hardt.io:8080
+              uri: http://kuard.internal.hardt.io:8080
+              predicates:
+                - Path=/**
